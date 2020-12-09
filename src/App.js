@@ -9,12 +9,12 @@ class App extends Component {
 
     this.state = {
       count: 0,
+      inputtedNumber: 0
     }
   }
 
   increment = () => {
-    const currentCount = this.state.count
-    const newCount = currentCount + 1
+    const newCount = this.state.count + this.state.inputtedNumber
     // this.state = {
     //   count: newCount
     // }
@@ -23,13 +23,19 @@ class App extends Component {
   }
 
   decrement = () => {
-    this.setState({ count: this.state.count - 1 })
+    this.setState({ count: this.state.count - this.state.inputtedNumber})
+  }
+
+  changeInput = (evt) => {
+    const newValue = parseInt(evt.target.value) || 0
+    this.setState({inputtedNumber: newValue})
   }
 
   render() {
     return(
       <div>
         <h1>{this.state.count}</h1>
+        <input type="number" value={this.state.inputtedNumber} onChange={this.changeInput}/>
         <button onClick={this.increment}>+</button>
         <button onClick={this.decrement}>-</button>
       </div>
